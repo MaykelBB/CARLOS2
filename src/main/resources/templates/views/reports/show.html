@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*@thymesVar id="pageTitle" type="String"*/-->
+    <title th:text="${pageTitle}">GPS2Track</title>
+    <object th:include="fragments/head :: head" th:remove="tag"/>
+    <script src="webjars/highcharts/5.0.14/highcharts.js" type="application/javascript"></script>
+    <script src="webjars/highcharts/5.0.14/js/modules/data.js" type="application/javascript"></script>
+    <script src="webjars/highcharts/5.0.14/js/modules/exporting.js" type="application/javascript"></script>
+
+</head>
+<body>
+    <div th:replace="fragments/header :: header">&copy; 2017 GPS2Track Application</div>
+    <div id="content" role="main">
+        <section class="row colset-2-its">
+            <table id="datatable">
+                <thead>
+                <tr><th></th><th>En actividades</th><th>En desplazamiento</th></tr>
+                </thead>
+                <tbody>
+                <tr><th>Ricardo Ortega</th><td>7.1</td><td>1.3</td></tr>
+                <tr><th>Federico Espinoza</th><td>9</td><td>0.7</td></tr>
+                <tr><th>Juan Véliz</th><td>6.8</td><td>1.9</td></tr>
+                <tr><th>Pablo Catalán</th><td>7.6</td><td>1.4</td></tr>
+                <tr><th>Lorena Martínez</th><td>7.4</td><td>1.6</td></tr>
+                <tr><th>Jorge Acuña</th><td>7.8</td><td>1.2</td></tr>
+                <tr><th>Daniel Rojas</th><td>7.7</td><td>1.7</td></tr>
+                <tr><th>René Tapia</th><td>7.2</td><td>1.8</td></tr>
+                <tr><th>Alejandro Quevedo</th><td>7.4</td><td>1.4</td></tr>
+                <tr><th>Pamela Salgado</th><td>6.9</td><td>2.2</td></tr>
+                </tbody>
+            </table>
+
+            <div id="container" style="min-width: 310px; max-width: 1000px; height: 500px; margin: 0 auto"></div>
+            <script type="text/javascript">
+                Highcharts.chart('container', {
+                    colors: ['#50B432', 'red', '#ED561B', '#DDDF00', '#24CBE5', '#64E572',
+                        '#FF9655', '#FFF263', '#6AF9C4'],
+                    data: { table: 'datatable' },
+                    chart: { type: 'bar' },
+                    title: { text: 'Reporte de horas 15 de septiembre de 2017' },
+                    yAxis: {
+                        allowDecimals: true,
+                        min: 0,
+                        title: { text: 'Horas' }
+                    },
+                    plotOptions: {
+                        series: { stacking: 'normal' }
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            return '<b>' + this.series.name + '</b>' + '\n' +
+                                this.point.y + ' ' + this.point.name.toLowerCase();
+                        }
+                    }
+                });
+            </script>
+        </section>
+    </div>
+    <div th:replace="fragments/footer :: footer">&copy; 2017 GPS2Track Application</div>
+
+</body>
+</html>

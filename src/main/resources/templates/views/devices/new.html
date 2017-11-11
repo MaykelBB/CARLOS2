@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<head>
+    <!--/*@thymesVar id="pageTitle" type="String"*/-->
+    <title th:text="${pageTitle}">Nuevo Dispositivo</title>
+    <object th:include="@{/fragments/head} :: head" th:remove="tag"/>
+</head>
+<body>
+    <div th:replace="@{/fragments/header} :: header">GPS2Track Application</div>
+    <div class="nav" role="navigation">
+        <ul>
+            <li><a th:href="@{/dispositivo}" class="list">Listado Dispositivos</a></li>
+        </ul>
+    </div>
+    <div id="create-dispositivo" class="content scaffold-create" role="main">
+        <h1>Nuevo Dispositivo</h1>
+        <form class="form-horizontal" th:object="${device}" th:action="@{/dispositivo/save}" method="post">
+            <fieldset class="form">
+                <div class="fieldcontain">
+                    <label>IMEI&nbsp;</label><input type="text" name="imei" value="" id="imei" th:field="*{imei}"/>
+                </div>
+                <div class="fieldcontain">
+                    <label>Marca&nbsp;</label><input type="text" name="brand" value="" id="brand" th:field="*{brand}"/>
+                </div>
+                <div class="fieldcontain">
+                    <label>Modelo&nbsp;</label><input type="text" name="model" value="" id="model" th:field="*{model}"/>
+                </div>
+                <div class="fieldcontain">
+                    <label>Número Serie&nbsp;</label><input type="text" name="serial" value="" id="serial"  th:field="*{serial}"/>
+                </div>
+            </fieldset>
+            <fieldset class="buttons">
+                <button type="reset" class="btn" id="reset" name="reset">Limpiar</button>
+                <button type="submit" class="save" id="create" name="create">Guardar Dispositivo</button>
+            </fieldset>
+        </form>
+        <!--<form action="/dispositivo/save" method="post">
+            <fieldset class="buttons">
+                <input type="submit" name="create" class="save" value="Crear" id="create">
+            </fieldset>
+        </form>-->
+    </div>
+    <div th:replace="@{/fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
+</body>
+</html>
+
+<!-- Ejemplos -->
+<!-- Input oculto
+input type="hidden" th:field="*{imei}" /-->
+<!-- Check box
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Active</label>
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" th:field="*{active}"/>
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
+<!-- Listado seleccionable
+               <div class="form-group">
+                    <label class="col-sm-2 control-label">Author</label>
+                    <div class="col-md-10">
+                        &lt;!&ndash; loop over available  authors &ndash;&gt;
+                        <select class="form-control" th:field="*{author}">
+                            <option value="">Select Author</option>
+                            <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.firstName + ' ' + author.lastName}">Authors</option>
+                        </select>
+                    </div>
+                </div> -->
+<!-- Texto grande
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Body</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" rows="5" th:field="*{body}">body</textarea>
+                    </div>
+                </div>-->

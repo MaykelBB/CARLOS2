@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<head>
+    <!--/*@thymesVar id="pageTitle" type="String"*/-->
+    <title th:text="${pageTitle}">Trabajador</title>
+    <object th:include="@{/fragments/head} :: head" th:remove="tag"/>
+</head>
+<body>
+    <div th:replace="@{/fragments/header} :: header">GPS2Track Application</div>
+    <div class="nav" role="navigation">
+        <ul>
+            <li><a th:href="@{/trabajador}" class="list">Listado Trabajadores</a></li>
+            <li><a th:href="@{/trabajador/nuevo}" class="create">Nuevo Trabajador</a></li>
+        </ul>
+    </div>
+    <div id="show-trabajador" class="content scaffold-show" role="main">
+        <h1>Mostrar Trabajador</h1>
+        <ol class="property-list trabajador">
+            <li class="fieldcontain">
+                <span id="rut-label" class="property-label">IMEI</span>
+                <div class="property-value" aria-labelledby="rut-label" th:text="${employee.getRutFormat()}">1-9</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="names-label" class="property-label">Nombres</span>
+                <div class="property-value" aria-labelledby="names-label" th:text="${employee.names}">Nombre</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="pSurName-label" class="property-label">Apellido paterno</span>
+                <div class="property-value" aria-labelledby="pSurName-label" th:text="${employee.pSurName}">Apellido Paterno</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="mSurName-label" class="property-label">Apellido materno</span>
+                <div class="property-value" aria-labelledby="mSurName-label" th:text="${employee.mSurName}">Apellido Materno</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="birthDate-label" class="property-label">Fecha de nacimiento</span>
+                <div class="property-value" aria-labelledby="birthDate-label" th:text="${employee.birthDate}">1/1/1970</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="genre-label" class="property-label">Género</span>
+                <div class="property-value" aria-labelledby="genre-label" th:text="${employee.getGenreFormat()}">Género</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="section-label" class="property-label">Sección</span>
+                <div class="property-value" aria-labelledby="section-label" th:text="${employee.section.name}">Sección</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="role-label" class="property-label">Rol</span>
+                <div class="property-value" aria-labelledby="role-label" th:text="${employee.role}">Rol</div>
+            </li>
+        </ol>
+
+    </div>
+    <div th:replace="@{/fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
+</body>
+</html>
+
+<!--
+<form action="http://localhost:8000/dispositivo/delete/862743030713269" method="post">
+            <input type="hidden" name="_method" value="DELETE" id="_method">
+            <fieldset class="buttons">
+                <a href="http://localhost:8000/dispositivo/edit/862743030713269" class="edit">Editar</a>
+                <input class="delete" type="submit" value="Eliminar" onclick="return confirm(&#39;¿Está usted seguro?&#39;);">
+            </fieldset>
+        </form>
+-->

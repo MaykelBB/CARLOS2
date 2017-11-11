@@ -1,0 +1,10 @@
+spring:
+  thymeleaf:
+    cache: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo
+    username: ug2t
+    password: ug2t
