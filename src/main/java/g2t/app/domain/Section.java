@@ -23,7 +23,7 @@ public class Section {
     private List<Employee> employees;
 
     @SuppressWarnings("unused")
-    private Section() { }
+    public Section() { }
 
     @SuppressWarnings("unused")
     public Section(String name) {

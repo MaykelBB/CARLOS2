@@ -25,14 +25,14 @@ public class EmployeeController {
     }
 
     @RequestMapping("/trabajador")
-    public String deviceList(Model model){
+    public String employeeList(Model model){
         model.addAttribute("pageTitle", "GPS2Track - Listado Trabajadores");
         model.addAttribute("employees", employeeService.getActiveEmployees());
         return "views/employees/list";
     }
 
     @RequestMapping("/trabajador/{rut}")
-    public String showDevice(@PathVariable long rut, Model model){
+    public String showEmployee(@PathVariable long rut, Model model){
         //logger.info(deviceService.getDevice(imei).toString());
         model.addAttribute("pageTitle", "GPS2Track - Trabajador");
         model.addAttribute("employee", employeeService.getEmployee(rut));
@@ -40,7 +40,7 @@ public class EmployeeController {
     }
 
     @RequestMapping("/trabajador/nuevo")
-    public String newDevice(Model model){
+    public String newEmployee(Model model){
         model.addAttribute("pageTitle", "GPS2Track - Nuevo Trabajador");
         model.addAttribute("employee", new Employee());
         model.addAttribute("sections", sectionService.getActiveSections());
@@ -48,7 +48,7 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/trabajador/save", method = RequestMethod.POST)
-    public String saveDevice(Employee employee){
+    public String saveEmployee(Employee employee){
         Employee savedEmployee = employeeService.saveEmployee(employee);
         return "redirect:/trabajador/" + savedEmployee.getRut();
     }

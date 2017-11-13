@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<head>
+    <!--/*@thymesVar id="pageTitle" type="String"*/-->
+    <title th:text="${pageTitle}">Seccion</title>
+    <object th:include="@{/fragments/head} :: head" th:remove="tag"/>
+</head>
+<body>
+    <div th:replace="@{/fragments/header} :: header">GPS2Track Application</div>
+    <div class="nav" role="navigation">
+        <ul>
+            <li><a th:href="@{/seccion}" class="list">Listado Secciones</a></li>
+            <li><a th:href="@{/seccion/nueva}" class="create">Nueva Seccion</a></li>
+        </ul>
+    </div>
+    <div id="show-seccion" class="content scaffold-show" role="main">
+        <h1>Mostrar Seccion</h1>
+        <ol class="property-list dispositivo">
+            <li class="fieldcontain">
+                <span id="id-label" class="property-label">Código</span>
+                <div class="property-value" aria-labelledby="id-label" th:text="${section.id}">0</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="name-label" class="property-label">Nombre</span>
+                <div class="property-value" aria-labelledby="name-label" th:text="${section.name}">Nombre</div>
+            </li>
+        </ol>
+
+    </div>
+    <div th:replace="@{/fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<head>
+    <!--/*@thymesVar id="pageTitle" type="String"*/-->
+    <title th:text="${pageTitle}">Listado Secciones</title>
+    <object th:include="@{/fragments/head} :: head" th:remove="tag"/>
+</head>
+<body>
+    <div th:replace="@{/fragments/header} :: header">GPS2Track Application</div>
+    <div class="nav" role="navigation">
+        <ul>
+            <li><a th:href="@{/seccion/nueva}" class="create">Nueva Sección</a></li>
+        </ul>
+    </div>
+    <div id="list-seccion" class="content scaffold-list" role="main">
+        <h1>Listado Secciones</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th class="sortable"><a href="/dispositivo/index?sort=serial&amp;max=10&amp;order=asc">Código</a></th>
+                    <th class="sortable"><a href="/dispositivo/index?sort=marca&amp;max=10&amp;order=asc">Nombre</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--/*@thymesVar id="devices" type=""*/-->
+                <tr th:each="section,iterStat : ${sections}" th:class="${iterStat.odd}? 'odd'">
+                    <td><a th:href="@{'/seccion/' + ${section.id}}" th:text="${section.id}">ID</a></td>
+                    <td><a th:href="@{'/seccion/' + ${section.id}}" th:text="${section.name}">Nombre</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="@{/fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
+</body>
+</html>
