@@ -1,0 +1,12 @@
+spring:
+  thymeleaf:
+    cache: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gps2track
+    username: ug2t
+    password: ug2t
+
+debug: false

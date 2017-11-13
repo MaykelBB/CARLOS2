@@ -136,11 +136,6 @@ public class Employee {
         return Long.toString(numb) + "-" + dvText;
     }
 
-    @SuppressWarnings("unused")
-    public String getGenreFormat(){
-        return genre.equals(Genre.M) ? "Masculino" : "Femenino";
-    }
-
     @Override
     public String toString() {
         return "Employee{" +

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<head>
+    <!--/*@thymesVar id="pageTitle" type="String"*/-->
+    <title th:text="${pageTitle}">Dispositivo</title>
+    <object th:include="@{/fragments/head} :: head" th:remove="tag"/>
+</head>
+<body>
+    <div th:replace="@{/fragments/header} :: header">GPS2Track Application</div>
+    <div class="nav" role="navigation">
+        <ul>
+            <li><a th:href="@{/dispositivo}" class="list">Listado Dispositivos</a></li>
+            <li><a th:href="@{/dispositivo/nuevo}" class="create">Nuevo Dispositivo</a></li>
+        </ul>
+    </div>
+    <div id="show-dispositivo" class="content scaffold-show" role="main">
+        <h1>Mostrar Dispositivo</h1>
+        <ol class="property-list dispositivo">
+            <li class="fieldcontain">
+                <span id="imei-label" class="property-label">IMEI</span>
+                <div class="property-value" aria-labelledby="imei-label" th:text="${device.imei}">000000000000000</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="marca-label" class="property-label">Marca</span>
+                <div class="property-value" aria-labelledby="marca-label" th:text="${device.brand}">Brand</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="modelo-label" class="property-label">Modelo</span>
+                <div class="property-value" aria-labelledby="modelo-label" th:text="${device.model}">Model</div>
+            </li>
+            <li class="fieldcontain">
+                <span id="serial-label" class="property-label">Serial</span>
+                <div class="property-value" aria-labelledby="serial-label" th:text="${device.serial}">1A2B3C4D</div>
+            </li>
+        </ol>
+
+    </div>
+    <div th:replace="@{/fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
+</body>
+</html>
+
+<!--
+<form action="http://localhost:8000/dispositivo/delete/862743030713269" method="post">
+            <input type="hidden" name="_method" value="DELETE" id="_method">
+            <fieldset class="buttons">
+                <a href="http://localhost:8000/dispositivo/edit/862743030713269" class="edit">Editar</a>
+                <input class="delete" type="submit" value="Eliminar" onclick="return confirm(&#39;¿Está usted seguro?&#39;);">
+            </fieldset>
+        </form>
+-->

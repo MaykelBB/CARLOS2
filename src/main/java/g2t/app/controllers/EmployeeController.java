@@ -2,6 +2,7 @@ package g2t.app.controllers;
 
 import g2t.app.domain.Employee;
 import g2t.app.services.EmployeeService;
+import g2t.app.services.SectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class EmployeeController {
     private static final Logger logger = LoggerFactory.getLogger(DeviceController.class);
     private EmployeeService employeeService;
+    private SectionService sectionService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService){
+    public EmployeeController(EmployeeService employeeService, SectionService sectionService) {
         this.employeeService = employeeService;
+        this.sectionService = sectionService;
     }
 
     @RequestMapping("/trabajador")
@@ -40,6 +43,7 @@ public class EmployeeController {
     public String newDevice(Model model){
         model.addAttribute("pageTitle", "GPS2Track - Nuevo Trabajador");
         model.addAttribute("employee", new Employee());
+        model.addAttribute("sections", sectionService.getActiveSections());
         return "views/employees/new";
     }
 
