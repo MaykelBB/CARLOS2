@@ -26,7 +26,7 @@ public class Assignment {
     @JoinColumn(name = "imei")
     private Device device;
 
-    @SuppressWarnings("unused") private Assignment() { }
+    @SuppressWarnings("unused") public Assignment() { }
 
     @SuppressWarnings("unused")
     public Assignment(Date assignDate, Employee employee, Device device) {

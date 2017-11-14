@@ -19,7 +19,7 @@ public class DeviceService {
 
     public Device saveDevice(Device device){ return deviceRepository.save(device); }
 
-    public List<Device> getActiveDevices(){
-        return deviceRepository.findByActive(true);
-    }
+    public List<Device> getActiveDevices(){ return deviceRepository.findByActive(true); }
+
+    public List<Device> getAvailableDevices(){ return deviceRepository.findAvailable(); }
 }

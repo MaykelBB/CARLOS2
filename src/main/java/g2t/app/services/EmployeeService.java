@@ -28,4 +28,6 @@ public class EmployeeService {
     public List<Employee> getActiveEmployees(){
         return employeeRepository.findByActive(true);
     }
+
+    public List<Employee> getAvailableEmployees(){ return employeeRepository.findAvailable(); }
 }

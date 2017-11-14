@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<head>
+    <!--/*@thymesVar id="pageTitle" type="String"*/-->
+    <title th:text="${pageTitle}">Listado Asignaciones</title>
+    <object th:include="@{/fragments/head} :: head" th:remove="tag"/>
+</head>
+<body>
+    <div th:replace="@{/fragments/header} :: header">GPS2Track Application</div>
+    <div class="nav" role="navigation">
+        <ul>
+            <li><a th:href="@{/asignacion/nueva}" class="create">Nueva Asignación</a></li>
+        </ul>
+    </div>
+    <div id="list-asignacion" class="content scaffold-list" role="main">
+        <h1>Listado Asignaciones</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th class="sortable"><a href="/dispositivo/index?sort=serial&amp;max=10&amp;order=asc">Código</a></th>
+                    <th class="sortable"><a href="/dispositivo/index?sort=marca&amp;max=10&amp;order=asc">Rut Trabajador</a></th>
+                    <th class="sortable"><a href="/dispositivo/index?sort=marca&amp;max=10&amp;order=asc">Nombre Trabajador</a></th>
+                    <th class="sortable"><a href="/dispositivo/index?sort=modelo&amp;max=10&amp;order=asc">IMEI Dispositivo</a></th>
+                    <th class="sortable"><a href="/dispositivo/index?sort=serial&amp;max=10&amp;order=asc">Fecha Asignación</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--/*@thymesVar id="assignments" type=""*/-->
+                <tr th:each="assignment,iterStat : ${assignments}" th:class="${iterStat.odd}? 'odd'">
+                    <td><a th:href="@{'/asignacion/' + ${assignment.id}}" th:text="${assignment.id}">Código</a></td>
+                    <td><a th:href="@{'/asignacion/' + ${assignment.id}}" th:text="${assignment.employee.getRutFormat()}">Rut</a></td>
+                    <td><a th:href="@{'/asignacion/' + ${assignment.id}}" th:text="${assignment.employee.names + ' ' + assignment.employee.pSurName}">Nombre</a></td>
+                    <td><a th:href="@{'/asignacion/' + ${assignment.id}}" th:text="${assignment.device.imei}">Dispositivo</a></td>
+                    <td><a th:href="@{'/asignacion/' + ${assignment.id}}" th:text="${assignment.assignDate}">Fecha</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="@{/fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
+</body>
+</html>

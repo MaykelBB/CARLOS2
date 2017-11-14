@@ -3,35 +3,42 @@
       xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
 <head>
     <!--/*@thymesVar id="pageTitle" type="String"*/-->
-    <title th:text="${pageTitle}">Nuevo Dispositivo</title>
+    <title th:text="${pageTitle}">Nueva Asignación</title>
     <object th:include="@{/fragments/head} :: head" th:remove="tag"/>
 </head>
 <body>
     <div th:replace="@{/fragments/header} :: header">GPS2Track Application</div>
     <div class="nav" role="navigation">
         <ul>
-            <li><a th:href="@{/seccion}" class="list">Listado Secciones</a></li>
+            <li><a th:href="@{/asignacion}" class="list">Listado Asignaciones</a></li>
         </ul>
     </div>
-    <div id="create-seccion" class="content scaffold-create" role="main">
-        <h1>Nueva Sección</h1>
-        <form class="form-horizontal" th:object="${section}" th:action="@{/seccion/save}" method="post">
+    <div id="create-asignacion" class="content scaffold-create" role="main">
+        <h1>Nuevo Trabajador</h1>
+        <form class="form-horizontal" th:object="${assignment}" th:action="@{/asignacion/save}" method="post">
             <input type="hidden" th:field="*{id}"/>
             <fieldset class="form">
                 <div class="fieldcontain">
-                    <label>Nombre&nbsp;</label><input type="text" name="name" value="" id="name" th:field="*{name}"/>
+                    <label>Trabajador&nbsp;</label>
+                    <select id="trabajadorSel" th:field="*{employee}">
+                        <option th:each="employee : ${employees}" th:value="${employee.rut}" th:text="${employee.getRutFormat() + ': ' + employee.names + ' ' + employee.pSurName}">Trabajador</option>
+                    </select>
+                </div>
+                <div class="fieldcontain">
+                    <label>Dispositivo&nbsp;</label>
+                    <select id="sectionSel" th:field="*{device}">
+                        <option th:each="device : ${devices}" th:value="${device.imei}" th:text="${device.imei + ': ' + device.brand}">Seccción</option>
+                    </select>
+                </div>
+                <div class="fieldcontain">
+                    <label>Fecha de asignación&nbsp;</label><input type="date" name="assignDate" value="" id="assignDate"  th:field="*{assignDate}"/>
                 </div>
             </fieldset>
             <fieldset class="buttons">
                 <input type="reset" name="reset" class="delete" value="Limpiar" id="reset"/>
-                <input type="submit" name="create" class="save" value="Guardar Sección" id="create"/>
+                <input type="submit" name="create" class="save" value="Guardar Asignación" id="create"/>
             </fieldset>
         </form>
-        <!--<form action="/dispositivo/save" method="post">
-            <fieldset class="buttons">
-                <input type="submit" name="create" class="save" value="Crear" id="create">
-            </fieldset>
-        </form>-->
     </div>
     <div th:replace="@{/fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
 </body>

@@ -31,15 +31,10 @@
                 </div>
             </fieldset>
             <fieldset class="buttons">
-                <button type="reset" class="btn" id="reset" name="reset">Limpiar</button>
-                <button type="submit" class="save" id="create" name="create">Guardar Dispositivo</button>
+                <input type="reset" name="reset" class="delete" value="Limpiar" id="reset"/>
+                <input type="submit" name="create" class="save" value="Guardar Dispositivo" id="create"/>
             </fieldset>
         </form>
-        <!--<form action="/dispositivo/save" method="post">
-            <fieldset class="buttons">
-                <input type="submit" name="create" class="save" value="Crear" id="create">
-            </fieldset>
-        </form>-->
     </div>
     <div th:replace="@{/fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
 </body>
