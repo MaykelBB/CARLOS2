@@ -7,7 +7,7 @@
     <object th:include="@{/fragments/head} :: head" th:remove="tag"/>
 </head>
 <body>
-    <div th:replace="@{/fragments/header} :: header">GPS2Track Application</div>
+    <div th:replace="@{fragments/header} :: header">GPS2Track Application</div>
     <div class="nav" role="navigation">
         <ul>
             <li><a th:href="@{/dispositivo}" class="list">Listado Dispositivos</a></li>
@@ -36,7 +36,7 @@
         </ol>
 
     </div>
-    <div th:replace="@{/fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
+    <div th:replace="@{fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
 </body>
 </html>
 

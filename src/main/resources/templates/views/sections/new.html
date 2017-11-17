@@ -4,10 +4,10 @@
 <head>
     <!--/*@thymesVar id="pageTitle" type="String"*/-->
     <title th:text="${pageTitle}">Nuevo Dispositivo</title>
-    <object th:include="@{/fragments/head} :: head" th:remove="tag"/>
+    <object th:include="@{fragments/head} :: head" th:remove="tag"/>
 </head>
 <body>
-    <div th:replace="@{/fragments/header} :: header">GPS2Track Application</div>
+    <div th:replace="@{fragments/header} :: header">GPS2Track Application</div>
     <div class="nav" role="navigation">
         <ul>
             <li><a th:href="@{/seccion}" class="list">Listado Secciones</a></li>
@@ -33,7 +33,7 @@
             </fieldset>
         </form>-->
     </div>
-    <div th:replace="@{/fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
+    <div th:replace="@{fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
 </body>
 </html>
 
