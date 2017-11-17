@@ -16,8 +16,8 @@
     <div id="create-seccion" class="content scaffold-create" role="main">
         <h1>Nueva Sección</h1>
         <form class="form-horizontal" th:object="${section}" th:action="@{/seccion/save}" method="post">
-            <input type="hidden" th:field="*{id}"/>
             <fieldset class="form">
+                <input type="hidden" th:field="*{id}"/>
                 <div class="fieldcontain">
                     <label>Nombre&nbsp;</label><input type="text" name="name" value="" id="name" th:field="*{name}"/>
                 </div>

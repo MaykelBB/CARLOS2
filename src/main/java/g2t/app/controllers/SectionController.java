@@ -47,4 +47,11 @@ public class SectionController {
         Section savedSection = sectionService.saveSection(section);
         return "redirect:/seccion/" + savedSection.getId();
     }
+
+    @RequestMapping("/seccion/editar/{id}")
+    public String editSection(@PathVariable long id, Model model){
+        model.addAttribute("pageTitle", "GPS2Track - Editar Sección");
+        model.addAttribute("section", sectionService.getSection(id));
+        return "views/sections/new";
+    }
 }

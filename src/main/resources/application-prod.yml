@@ -6,6 +6,9 @@ spring:
       #none/validate/update/create-drop
       ddl-auto: create-drop
   datasource:
-    url: jdbc:postgresql://gps2track.c549jops6x3b.sa-east-1.rds.amazonaws.com:5432/gps2track
-    username: prg2t
-    password: Cj27OqAsHU5i9eQgz24N
+    #url: jdbc:postgresql://gps2track.c549jops6x3b.sa-east-1.rds.amazonaws.com:5432/gps2track
+    #username: prg2t
+    #password: Cj27OqAsHU5i9eQgz24N
+    url: jdbc:postgresql://vqrzihghsrgwzo:0539133a63788f546d431362937457abe2cec261488b208199ea4a2bf3170225@ec2-54-197-224-52.compute-1.amazonaws.com:5432/ddvba096ofbpcj
+    username: vqrzihghsrgwzo
+    password: 0539133a63788f546d431362937457abe2cec261488b208199ea4a2bf3170225
