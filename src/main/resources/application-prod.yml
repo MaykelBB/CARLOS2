@@ -4,7 +4,7 @@ spring:
   jpa:
     hibernate:
       #none/validate/update/create-drop
-      ddl-auto: create-drop
+      ddl-auto: update
   datasource:
     #url: jdbc:postgresql://gps2track.c549jops6x3b.sa-east-1.rds.amazonaws.com:5432/gps2track
     #username: prg2t
