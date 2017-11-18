@@ -50,8 +50,14 @@
                 <div class="property-value" aria-labelledby="role-label" th:text="${employee.role}">Rol</div>
             </li>
         </ol>
-
     </div>
+    <form th:object="${employee}" th:action="@{/trabajador/save}" method="post">
+        <fieldset class="buttons">
+            <a th:href="@{'/trabajador/editar/' + ${employee.rut}}" class="edit">Editar</a>
+            <a th:href="@{'/trabajador/eliminar/' + ${employee.rut}}" class="delete"
+               onclick="return confirm(&#39;¿Está usted seguro?&#39;);">Eliminar</a>
+        </fieldset>
+    </form>
     <div th:replace="@{fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
 </body>
 </html>

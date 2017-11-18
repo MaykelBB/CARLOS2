@@ -33,7 +33,6 @@ public class EmployeeController {
 
     @RequestMapping("/trabajador/{rut}")
     public String showEmployee(@PathVariable long rut, Model model){
-        //logger.info(deviceService.getDevice(imei).toString());
         model.addAttribute("pageTitle", "GPS2Track - Trabajador");
         model.addAttribute("employee", employeeService.getEmployee(rut));
         return "views/employees/show";
@@ -42,14 +41,32 @@ public class EmployeeController {
     @RequestMapping("/trabajador/nuevo")
     public String newEmployee(Model model){
         model.addAttribute("pageTitle", "GPS2Track - Nuevo Trabajador");
+        model.addAttribute("readOnly", "false");
         model.addAttribute("employee", new Employee());
         model.addAttribute("sections", sectionService.getActiveSections());
-        return "views/employees/new";
+        return "views/employees/form";
     }
 
     @RequestMapping(value = "/trabajador/save", method = RequestMethod.POST)
     public String saveEmployee(Employee employee){
         Employee savedEmployee = employeeService.saveEmployee(employee);
         return "redirect:/trabajador/" + savedEmployee.getRut();
+    }
+
+    @RequestMapping("/trabajador/editar/{rut}")
+    public String editEmployee(@PathVariable long rut, Model model){
+        model.addAttribute("pageTitle", "GPS2Track - Editar Trabajador");
+        model.addAttribute("readOnly", "readonly");
+        model.addAttribute("employee", employeeService.getEmployee(rut));
+        model.addAttribute("sections", sectionService.getActiveSections());
+        return "views/employees/form";
+    }
+
+    @RequestMapping("/trabajador/eliminar/{id}")
+    public String deleteAssignment(@PathVariable long rut){
+        Employee updatedEmployee = employeeService.getEmployee(rut);
+        updatedEmployee.setActive(false);
+        employeeService.saveEmployee(updatedEmployee);
+        return "redirect:/trabajador";
     }
 }

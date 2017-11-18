@@ -39,11 +39,12 @@ public class SectionController {
     public String newSection(Model model){
         model.addAttribute("pageTitle", "GPS2Track - Nueva Sección");
         model.addAttribute("section", new Section());
-        return "views/sections/new";
+        return "views/sections/form";
     }
 
     @RequestMapping(value = "/seccion/save", method = RequestMethod.POST)
     public String saveSection(Section section){
+        logger.info(String.valueOf(section.getId()));
         Section savedSection = sectionService.saveSection(section);
         return "redirect:/seccion/" + savedSection.getId();
     }
@@ -52,6 +53,14 @@ public class SectionController {
     public String editSection(@PathVariable long id, Model model){
         model.addAttribute("pageTitle", "GPS2Track - Editar Sección");
         model.addAttribute("section", sectionService.getSection(id));
-        return "views/sections/new";
+        return "views/sections/form";
+    }
+
+    @RequestMapping("/seccion/eliminar/{id}")
+    public String deleteAssignment(@PathVariable long id){
+        Section updatedSection = sectionService.getSection(id);
+        updatedSection.setActive(false);
+        sectionService.saveSection(updatedSection);
+        return "redirect:/seccion";
     }
 }

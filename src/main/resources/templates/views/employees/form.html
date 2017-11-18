@@ -17,8 +17,9 @@
         <h1>Nuevo Trabajador</h1>
         <form class="form-horizontal" th:object="${employee}" th:action="@{/trabajador/save}" method="post">
             <fieldset class="form">
+                <input type="hidden" th:field="*{version}"/>
                 <div class="fieldcontain">
-                    <label>Rut&nbsp;</label><input type="text" name="rut" value="" id="rut" th:field="*{rut}"/>
+                    <label>Rut&nbsp;</label><input type="text" name="rut" id="rut" th:field="*{rut}" th:readonly="${readOnly}"/>
                 </div>
                 <div class="fieldcontain">
                     <label>Nombres&nbsp;</label><input type="text" name="names" value="" id="names" th:field="*{names}"/>
@@ -64,25 +65,3 @@
     <div th:replace="@{fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
 </body>
 </html>
-
-<!-- Ejemplos -->
-<!-- Input oculto
-input type="hidden" th:field="*{imei}" /-->
-<!-- Check box
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Active</label>
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" th:field="*{active}"/>
-                            </label>
-                        </div>
-                    </div>
-                </div> -->
-<!-- Texto grande
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Body</label>
-                    <div class="col-md-10">
-                        <textarea class="form-control" rows="5" th:field="*{body}">body</textarea>
-                    </div>
-                </div>-->

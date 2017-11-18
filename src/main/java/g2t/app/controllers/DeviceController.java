@@ -25,13 +25,11 @@ public class DeviceController {
     public String deviceList(Model model){
         model.addAttribute("pageTitle", "GPS2Track - Listado Dispositivos");
         model.addAttribute("devices", deviceService.getActiveDevices());
-        //model.addAttribute("devices", crear());
         return "views/devices/list";
     }
 
     @RequestMapping("/dispositivo/{imei}")
     public String showDevice(@PathVariable long imei, Model model){
-        //logger.info(deviceService.getDevice(imei).toString());
         model.addAttribute("pageTitle", "GPS2Track - Dispositivo ");
         model.addAttribute("device", deviceService.getDevice(imei));
         return "views/devices/show";
@@ -40,13 +38,30 @@ public class DeviceController {
     @RequestMapping("/dispositivo/nuevo")
     public String newDevice(Model model){
         model.addAttribute("pageTitle", "GPS2Track - Nuevo Dispositivo");
+        model.addAttribute("readOnly", "false");
         model.addAttribute("device", new Device());
-        return "views/devices/new";
+        return "views/devices/form";
     }
 
     @RequestMapping(value = "/dispositivo/save", method = RequestMethod.POST)
     public String saveDevice(Device device){
         Device savedDevice = deviceService.saveDevice(device);
         return "redirect:/dispositivo/" + savedDevice.getImei();
+    }
+
+    @RequestMapping("/dispositivo/editar/{imei}")
+    public String editDevice(@PathVariable long imei, Model model){
+        model.addAttribute("pageTitle", "GPS2Track - Editar Dispositivo");
+        model.addAttribute("readOnly", "readonly");
+        model.addAttribute("device", deviceService.getDevice(imei));
+        return "views/devices/form";
+    }
+
+    @RequestMapping("/dispositivo/eliminar/{id}")
+    public String deleteAssignment(@PathVariable long imei){
+        Device updatedDevice = deviceService.getDevice(imei);
+        updatedDevice.setActive(false);
+        deviceService.saveDevice(updatedDevice);
+        return "redirect:/dispositivo";
     }
 }

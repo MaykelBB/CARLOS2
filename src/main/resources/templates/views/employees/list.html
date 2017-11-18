@@ -15,21 +15,20 @@
     </div>
     <div id="list-trabajador" class="content scaffold-list" role="main">
         <h1>Listado Trabajadores</h1>
-        <table>
+        <table class="tablesorter">
             <thead>
                 <tr>
-                    <th class="sortable"><a href="/dispositivo/index?sort=serial&amp;max=10&amp;order=asc">Rut</a></th>
-                    <th class="sortable"><a href="/dispositivo/index?sort=marca&amp;max=10&amp;order=asc">Nombres</a></th>
-                    <th class="sortable"><a href="/dispositivo/index?sort=modelo&amp;max=10&amp;order=asc">Apellido Paterno</a></th>
-                    <th class="sortable"><a href="/dispositivo/index?sort=activo&amp;max=10&amp;order=asc">Apellido Materno</a></th>
-                    <th class="sortable"><a href="/dispositivo/index?sort=serial&amp;max=10&amp;order=asc">Fecha de Nacimiento</a></th>
-                    <th class="sortable"><a href="/dispositivo/index?sort=serial&amp;max=10&amp;order=asc">Género</a></th>
-                    <th class="sortable"><a href="/dispositivo/index?sort=serial&amp;max=10&amp;order=asc">Sección</a></th>
-                    <th class="sortable"><a href="/dispositivo/index?sort=serial&amp;max=10&amp;order=asc">Rol</a></th>
+                    <th>Rut</th>
+                    <th>Nombres</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Género</th>
+                    <th>Sección</th>
+                    <th>Rol</th>
                 </tr>
             </thead>
             <tbody>
-
                 <!--/*@thymesVar id="employees" type=""*/-->
                 <tr th:each="employee,iterStat : ${employees}" th:class="${iterStat.odd}? 'odd'">
                     <td><a th:href="@{'/trabajador/' + ${employee.rut}}" th:text="${employee.getRutFormat()}">Rut</a></td>

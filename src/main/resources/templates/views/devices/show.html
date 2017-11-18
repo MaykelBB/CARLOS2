@@ -34,18 +34,14 @@
                 <div class="property-value" aria-labelledby="serial-label" th:text="${device.serial}">1A2B3C4D</div>
             </li>
         </ol>
-
     </div>
+    <form th:object="${device}" th:action="@{/dispositivo/save}" method="post">
+        <fieldset class="buttons">
+            <a th:href="@{'/dispositivo/editar/' + ${device.imei}}" class="edit">Editar</a>
+            <a th:href="@{'/dispositivo/eliminar/' + ${device.imei}}" class="delete"
+               onclick="return confirm(&#39;¿Está usted seguro?&#39;);">Eliminar</a>
+        </fieldset>
+    </form>
     <div th:replace="@{fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
 </body>
 </html>
-
-<!--
-<form action="http://localhost:8000/dispositivo/delete/862743030713269" method="post">
-            <input type="hidden" name="_method" value="DELETE" id="_method">
-            <fieldset class="buttons">
-                <a href="http://localhost:8000/dispositivo/edit/862743030713269" class="edit">Editar</a>
-                <input class="delete" type="submit" value="Eliminar" onclick="return confirm(&#39;¿Está usted seguro?&#39;);">
-            </fieldset>
-        </form>
--->

@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
-
 @Controller
 public class AssignmentController {
     private static final Logger logger = LoggerFactory.getLogger(DeviceController.class);
@@ -49,12 +47,29 @@ public class AssignmentController {
         model.addAttribute("assignment", new Assignment());
         model.addAttribute("employees", employeeService.getAvailableEmployees());
         model.addAttribute("devices", deviceService.getAvailableDevices());
-        return "views/assignments/new";
+        return "views/assignments/form";
     }
 
     @RequestMapping(value = "/asignacion/save", method = RequestMethod.POST)
     public String saveAssignment(Assignment assignment){
         Assignment savedAssignment = assignmentService.saveAssignment(assignment);
         return "redirect:/asignacion/" + savedAssignment.getId();
+    }
+
+    @RequestMapping("/asignacion/editar/{id}")
+    public String editAssignment(@PathVariable long id, Model model){
+        model.addAttribute("pageTitle", "GPS2Track - Editar Asignación");
+        model.addAttribute("assignment", assignmentService.getAssignment(id));
+        model.addAttribute("employees", employeeService.getAvailableEmployees());
+        model.addAttribute("devices", deviceService.getAvailableDevices());
+        return "views/assignments/form";
+    }
+
+    @RequestMapping("/asignacion/eliminar/{id}")
+    public String deleteAssignment(@PathVariable long id){
+        Assignment updatedAssignment = assignmentService.getAssignment(id);
+        updatedAssignment.setActive(false);
+        assignmentService.saveAssignment(updatedAssignment);
+        return "redirect:/asignacion";
     }
 }

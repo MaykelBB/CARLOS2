@@ -51,11 +51,11 @@
             </li>
         </ol>
     </div>
-    <form action="http://localhost:8000/dispositivo/delete/862743030713269" method="post">
-        <input type="hidden" name="_method" value="DELETE" id="_method"/>
+    <form th:object="${assignment}" th:action="@{/asignacion/eliminar}" method="post">
         <fieldset class="buttons">
-            <a href="http://localhost:8000/dispositivo/edit/862743030713269" class="edit">Editar</a>
-            <input class="delete" type="submit" value="Eliminar" onclick="return confirm(&#39;¿Está usted seguro?&#39;);"/>
+            <a th:href="@{'/asignacion/editar/' + ${assignment.id}}" class="edit">Editar</a>
+            <a th:href="@{'/asignacion/eliminar/' + ${assignment.id}}" class="delete"
+               onclick="return confirm(&#39;¿Está usted seguro?&#39;);">Eliminar</a>
         </fieldset>
     </form>
     <div th:replace="@{fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>

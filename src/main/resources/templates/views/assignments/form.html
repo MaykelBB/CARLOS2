@@ -14,10 +14,11 @@
         </ul>
     </div>
     <div id="create-asignacion" class="content scaffold-create" role="main">
-        <h1>Nuevo Trabajador</h1>
+        <h1>Nueva Asignación</h1>
         <form class="form-horizontal" th:object="${assignment}" th:action="@{/asignacion/save}" method="post">
-            <input type="hidden" th:field="*{id}"/>
             <fieldset class="form">
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{version}"/>
                 <div class="fieldcontain">
                     <label>Trabajador&nbsp;</label>
                     <select id="trabajadorSel" th:field="*{employee}">
@@ -31,7 +32,7 @@
                     </select>
                 </div>
                 <div class="fieldcontain">
-                    <label>Fecha de asignación&nbsp;</label><input type="date" name="assignDate" value="" id="assignDate"  th:field="*{assignDate}"/>
+                    <label>Fecha de asignación&nbsp;</label><input type="date" name="assignDate" id="assignDate"  th:field="*{assignDate}"/>
                 </div>
             </fieldset>
             <fieldset class="buttons">
@@ -43,25 +44,3 @@
     <div th:replace="@{fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>
 </body>
 </html>
-
-<!-- Ejemplos -->
-<!-- Input oculto
-input type="hidden" th:field="*{imei}" /-->
-<!-- Check box
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Active</label>
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" th:field="*{active}"/>
-                            </label>
-                        </div>
-                    </div>
-                </div> -->
-<!-- Texto grande
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Body</label>
-                    <div class="col-md-10">
-                        <textarea class="form-control" rows="5" th:field="*{body}">body</textarea>
-                    </div>
-                </div>-->

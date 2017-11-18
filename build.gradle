@@ -35,6 +35,7 @@ dependencies {
 	//testCompile('org.springframework.security:spring-security-test')
     //WebJars
     compile group: 'org.webjars', name: 'jquery', version: '2.2.0'
+	compile group: 'org.webjars', name: 'tablesorter', version: '2.25.4'
     compile group: 'org.webjars', name: 'bootstrap', version: '3.3.6'
     compile group: 'org.webjars', name: 'highcharts', version: '5.0.14'
 }

@@ -28,10 +28,10 @@
         </ol>
     </div>
     <form th:object="${section}" th:action="@{/seccion/save}" method="post">
-        <input type="hidden" name="_method" value="DELETE" id="_method"/>
         <fieldset class="buttons">
             <a th:href="@{'/seccion/editar/' + ${section.id}}" class="edit">Editar</a>
-            <input class="delete" type="submit" value="Eliminar" onclick="return confirm(&#39;¿Está usted seguro?&#39;);"/>
+            <a th:href="@{'/seccion/eliminar/' + ${section.id}}" class="delete"
+               onclick="return confirm(&#39;¿Está usted seguro?&#39;);">Eliminar</a>
         </fieldset>
     </form>
     <div th:replace="@{fragments/footer} :: footer">&copy; 2017 GPS2Track Application</div>

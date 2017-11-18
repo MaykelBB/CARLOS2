@@ -18,6 +18,7 @@
         <form class="form-horizontal" th:object="${section}" th:action="@{/seccion/save}" method="post">
             <fieldset class="form">
                 <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{version}"/>
                 <div class="fieldcontain">
                     <label>Nombre&nbsp;</label><input type="text" name="name" value="" id="name" th:field="*{name}"/>
                 </div>
