@@ -3,18 +3,19 @@ package g2t.app.controllers;
 import g2t.app.domain.Employee;
 import g2t.app.services.EmployeeService;
 import g2t.app.services.SectionService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
+
 @Controller
 public class EmployeeController {
-    private static final Logger logger = LoggerFactory.getLogger(DeviceController.class);
+
     private EmployeeService employeeService;
     private SectionService sectionService;
 
@@ -48,9 +49,16 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/trabajador/save", method = RequestMethod.POST)
-    public String saveEmployee(Employee employee){
-        Employee savedEmployee = employeeService.saveEmployee(employee);
-        return "redirect:/trabajador/" + savedEmployee.getRut();
+    public String saveEmployee(@Valid Employee employee, BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("readOnly", "readonly");
+            model.addAttribute("sections", sectionService.getActiveSections());
+            return "views/employees/form";
+        }
+        else {
+            Employee savedEmployee = employeeService.saveEmployee(employee);
+            return "redirect:/trabajador/" + savedEmployee.getRut();
+        }
     }
 
     @RequestMapping("/trabajador/editar/{rut}")
@@ -62,7 +70,7 @@ public class EmployeeController {
         return "views/employees/form";
     }
 
-    @RequestMapping("/trabajador/eliminar/{id}")
+    @RequestMapping("/trabajador/eliminar/{rut}")
     public String deleteAssignment(@PathVariable long rut){
         Employee updatedEmployee = employeeService.getEmployee(rut);
         updatedEmployee.setActive(false);

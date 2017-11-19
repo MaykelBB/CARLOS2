@@ -1,5 +1,8 @@
 package g2t.app.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,7 +10,9 @@ import java.util.List;
 @Table(name = "dispositivo")
 public class Device {
     @Id
+    @Range(min=100000000000000L, max=9999999999999999L)
     private long imei;
+    @NotEmpty
     @Column(name="marca")
     private String brand;
     @Column(name = "modelo")

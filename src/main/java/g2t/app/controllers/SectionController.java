@@ -2,18 +2,18 @@ package g2t.app.controllers;
 
 import g2t.app.domain.Section;
 import g2t.app.services.SectionService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
+
 @Controller
 public class SectionController {
-    private static final Logger logger = LoggerFactory.getLogger(DeviceController.class);
     private SectionService sectionService;
 
     @Autowired
@@ -43,10 +43,12 @@ public class SectionController {
     }
 
     @RequestMapping(value = "/seccion/save", method = RequestMethod.POST)
-    public String saveSection(Section section){
-        logger.info(String.valueOf(section.getId()));
-        Section savedSection = sectionService.saveSection(section);
-        return "redirect:/seccion/" + savedSection.getId();
+    public String saveSection(@Valid Section section, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) return "views/sections/form";
+        else {
+            Section savedSection = sectionService.saveSection(section);
+            return "redirect:/seccion/" + savedSection.getId();
+        }
     }
 
     @RequestMapping("/seccion/editar/{id}")

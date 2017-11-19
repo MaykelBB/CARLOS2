@@ -18,39 +18,40 @@
         <form class="form-horizontal" th:object="${employee}" th:action="@{/trabajador/save}" method="post">
             <fieldset class="form">
                 <input type="hidden" th:field="*{version}"/>
-                <div class="fieldcontain">
+                <div class="fieldcontain" th:classappend="${#fields.hasErrors('rut')}? 'has-error'">
                     <label>Rut&nbsp;</label><input type="text" name="rut" id="rut" th:field="*{rut}" th:readonly="${readOnly}"/>
+                    <span class="error-span" th:if="${#fields.hasErrors('rut')}" th:errors="*{rut}">Rut Erróneo</span>
                 </div>
-                <div class="fieldcontain">
+                <div class="fieldcontain" th:classappend="${#fields.hasErrors('names')}? 'has-error'">
                     <label>Nombres&nbsp;</label><input type="text" name="names" value="" id="names" th:field="*{names}"/>
+                    <span class="error-span" th:if="${#fields.hasErrors('names')}" th:errors="*{names}">Nombre Erróneo</span>
                 </div>
-                <div class="fieldcontain">
+                <div class="fieldcontain" th:classappend="${#fields.hasErrors('pSurName')}? 'has-error'">
                     <label>Apellido parterno&nbsp;</label><input type="text" name="pSurName" value="" id="pSurName" th:field="*{pSurName}"/>
+                    <span class="error-span" th:if="${#fields.hasErrors('pSurName')}" th:errors="*{pSurName}">Apellido Erróneo</span>
                 </div>
                 <div class="fieldcontain">
                     <label>Apellido marterno&nbsp;</label><input type="text" name="mSurName" value="" id="mSurName" th:field="*{mSurName}"/>
                 </div>
-                <div class="fieldcontain">
+                <div class="fieldcontain" th:classappend="${#fields.hasErrors('birthDate')}? 'has-error'">
                     <label>Fecha de nacimiento&nbsp;</label><input type="date" name="birthDate" value="" id="birthDate"  th:field="*{birthDate}"/>
+                    <span class="error-span" th:if="${#fields.hasErrors('birthDate')}">Fecha errónea</span>
                 </div>
-                <div class="fieldcontain">
+                <div class="fieldcontain" th:classappend="${#fields.hasErrors('genre')}? 'has-error'">
                     <label>Género&nbsp;</label>
-                    <!--select id="genreSel" th:field="*{genre}">
-                        <option th:each="genreType : ${T(g2t.app.domain.enums.Genre).values()}" th:value="${genreType}"
-                        th:text="${genreType.getDisplayName()}">
-                        </option>
-                    </select-->
                     <div class="divRadio" th:each="genreType : ${T(g2t.app.domain.enums.Genre).values()}">
                             <input type="radio" th:field="*{genre}" th:value="${genreType}" />
                             <label class="radio-inline" th:for="${#ids.prev('genre')}" th:text="${genreType.getDisplayName()}">Wireframe</label>
                     </div>
+                    <span class="error-span" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}">Género Erróneo</span>
                 </div>
                 <br></br>
-                <div class="fieldcontain">
+                <div class="fieldcontain" th:classappend="${#fields.hasErrors('section')}? 'has-error'">
                     <label>Sección&nbsp;</label>
                     <select id="sectionSel" th:field="*{section}">
                         <option th:each="section : ${sections}" th:value="${section.id}" th:text="${section.name}">Seccción</option>
                     </select>
+                    <span class="error-span" th:if="${#fields.hasErrors('section')}" th:errors="*{section}">Sección Errónea</span>
                 </div>
                 <div class="fieldcontain">
                     <label>Rol&nbsp;</label><input type="text" name="role" value="" id="role" th:field="*{role}"/>

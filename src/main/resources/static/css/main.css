@@ -594,3 +594,11 @@ input.radio {
     clear: none;
     margin: 12px 0 0 2px;
 }
+
+.error-span {
+    color: #ff6508;
+}
+
+#owner {
+    color: white;
+}

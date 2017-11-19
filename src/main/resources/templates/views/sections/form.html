@@ -19,8 +19,9 @@
             <fieldset class="form">
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{version}"/>
-                <div class="fieldcontain">
+                <div class="fieldcontain" th:classappend="${#fields.hasErrors('name')}? 'has-error'">
                     <label>Nombre&nbsp;</label><input type="text" name="name" value="" id="name" th:field="*{name}"/>
+                    <span class="error-span" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Nombre Erróneo</span>
                 </div>
             </fieldset>
             <fieldset class="buttons">

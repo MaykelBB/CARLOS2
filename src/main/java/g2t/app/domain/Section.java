@@ -1,5 +1,7 @@
 package g2t.app.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -11,7 +13,7 @@ public class Section {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private long id;
-    @NotNull
+    @NotEmpty
     @Column(name = "nombre")
     private String name;
     @NotNull

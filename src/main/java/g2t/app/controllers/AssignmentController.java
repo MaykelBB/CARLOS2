@@ -4,18 +4,18 @@ import g2t.app.domain.Assignment;
 import g2t.app.services.AssignmentService;
 import g2t.app.services.DeviceService;
 import g2t.app.services.EmployeeService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
+
 @Controller
 public class AssignmentController {
-    private static final Logger logger = LoggerFactory.getLogger(DeviceController.class);
     private AssignmentService assignmentService;
     private EmployeeService employeeService;
     private DeviceService deviceService;
@@ -51,9 +51,16 @@ public class AssignmentController {
     }
 
     @RequestMapping(value = "/asignacion/save", method = RequestMethod.POST)
-    public String saveAssignment(Assignment assignment){
-        Assignment savedAssignment = assignmentService.saveAssignment(assignment);
-        return "redirect:/asignacion/" + savedAssignment.getId();
+    public String saveAssignment(@Valid Assignment assignment, BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("employees", employeeService.getAvailableEmployees());
+            model.addAttribute("devices", deviceService.getAvailableDevices());
+            return "views/assignments/form";
+        }
+        else {
+            Assignment savedAssignment = assignmentService.saveAssignment(assignment);
+            return "redirect:/asignacion/" + savedAssignment.getId();
+        }
     }
 
     @RequestMapping("/asignacion/editar/{id}")

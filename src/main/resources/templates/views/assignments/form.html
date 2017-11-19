@@ -19,20 +19,23 @@
             <fieldset class="form">
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{version}"/>
-                <div class="fieldcontain">
+                <div class="fieldcontain" th:classappend="${#fields.hasErrors('employee')}? 'has-error'">
                     <label>Trabajador&nbsp;</label>
                     <select id="trabajadorSel" th:field="*{employee}">
                         <option th:each="employee : ${employees}" th:value="${employee.rut}" th:text="${employee.getRutFormat() + ': ' + employee.names + ' ' + employee.pSurName}">Trabajador</option>
                     </select>
+                    <span class="error-span" th:if="${#fields.hasErrors('employee')}" th:errors="*{employee}">Empleado Erróneo</span>
                 </div>
-                <div class="fieldcontain">
+                <div class="fieldcontain" th:classappend="${#fields.hasErrors('device')}? 'has-error'">
                     <label>Dispositivo&nbsp;</label>
                     <select id="sectionSel" th:field="*{device}">
                         <option th:each="device : ${devices}" th:value="${device.imei}" th:text="${device.imei + ': ' + device.brand}">Seccción</option>
                     </select>
+                    <span class="error-span" th:if="${#fields.hasErrors('device')}" th:errors="*{device}">Dispositivo Erróneo</span>
                 </div>
-                <div class="fieldcontain">
+                <div class="fieldcontain" th:classappend="${#fields.hasErrors('assignDate')}? 'has-error'">
                     <label>Fecha de asignación&nbsp;</label><input type="date" name="assignDate" id="assignDate"  th:field="*{assignDate}"/>
+                    <span class="error-span" th:if="${#fields.hasErrors('assignDate')}">Fecha errónea</span>
                 </div>
             </fieldset>
             <fieldset class="buttons">

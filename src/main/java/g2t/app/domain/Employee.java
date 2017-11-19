@@ -1,10 +1,10 @@
 package g2t.app.domain;
 
 import g2t.app.domain.enums.Genre;
-
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import java.sql.Date;
 import java.util.List;
 
@@ -12,18 +12,20 @@ import java.util.List;
 @Table(name = "trabajador")
 public class Employee {
     @Id
+    @Range(min=100000000L, max=9999999999L)
     private Long rut;
-    @NotNull
     @Column(name = "nombres")
+    @NotEmpty
     private String names;
-    @NotNull
     @Column(name = "apellido_paterno")
+    @NotEmpty
     private String pSurName;
     @Column(name = "apellido_materno")
     private String mSurName;
     @NotNull
     @Column(name = "fecha_nacimiento")
     private Date birthDate;
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "genero")
     private Genre genre;
@@ -34,6 +36,7 @@ public class Employee {
     private boolean active = true;
     @Version
     private Long version;
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "seccion_id")
     private Section section;

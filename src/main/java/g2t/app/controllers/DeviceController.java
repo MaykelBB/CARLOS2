@@ -2,18 +2,17 @@ package g2t.app.controllers;
 
 import g2t.app.domain.Device;
 import g2t.app.services.DeviceService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import javax.validation.Valid;
 
 @Controller
 public class DeviceController {
-    private static final Logger logger = LoggerFactory.getLogger(DeviceController.class);
     private DeviceService deviceService;
 
     @Autowired
@@ -44,9 +43,13 @@ public class DeviceController {
     }
 
     @RequestMapping(value = "/dispositivo/save", method = RequestMethod.POST)
-    public String saveDevice(Device device){
-        Device savedDevice = deviceService.saveDevice(device);
-        return "redirect:/dispositivo/" + savedDevice.getImei();
+    public String saveDevice(@Valid Device device, BindingResult bindingResult, Model model){
+        model.addAttribute("readOnly", "readonly");
+        if (bindingResult.hasErrors()) return "views/devices/form";
+        else {
+            Device savedDevice = deviceService.saveDevice(device);
+            return "redirect:/dispositivo/" + savedDevice.getImei();
+        }
     }
 
     @RequestMapping("/dispositivo/editar/{imei}")
@@ -57,7 +60,7 @@ public class DeviceController {
         return "views/devices/form";
     }
 
-    @RequestMapping("/dispositivo/eliminar/{id}")
+    @RequestMapping("/dispositivo/eliminar/{imei}")
     public String deleteAssignment(@PathVariable long imei){
         Device updatedDevice = deviceService.getDevice(imei);
         updatedDevice.setActive(false);

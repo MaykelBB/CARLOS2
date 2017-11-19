@@ -21,9 +21,11 @@ public class Assignment {
     private Long version;
     @ManyToOne
     @JoinColumn(name = "rut")
+    @NotNull
     private Employee employee;
     @ManyToOne
     @JoinColumn(name = "imei")
+    @NotNull
     private Device device;
 
     @SuppressWarnings("unused") public Assignment() { }
